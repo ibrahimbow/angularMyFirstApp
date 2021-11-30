@@ -1,0 +1,77 @@
+<p>profile-gallery works!</p>
+
+
+<div class="container-fluid">
+    <div class="row">
+      <div id="gallery" class="col-md-9">
+        <div class="gallery">
+          <div (click)="selectPet(pet)" *ngFor="let pet of pets | nameFilter: searchText2" 
+          [ngClass]="{active: selectedPet === pet}"
+          class="gallery-pet fader">
+          <img class="profile-picture" [src]="'http://localhost:8080/'+ pet.image" >
+          <div class="overlay">
+            <div class="overlay-text">{{pet.name}}</div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="gallery-detail" *ngIf="selectedPet">
+          <section id="petProfile" class="tiny-dialog fader">
+            <h3> {{selectedPet.name}}</h3>
+            <p> {{selectedPet.profileText}}</p>
+          </section>
+        </div>
+        
+      <section class="tiny-dialog">
+        <h3>Find your pet</h3>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input [(ngModel)]="searchText2"
+                 class="form-control"
+                 id="name"
+                 name="name"
+                 placeholder="Name">
+        </div>
+      </section>
+      <section class="tiny-dialog fader" id="petProfile">
+        <div class="form-group">
+          <h3>Add your pet</h3>
+          <form (ngSubmit)="onSubmit()" [formGroup]="addNewPet">
+            <label>Name</label>
+            <input class="form-control" formControlName="name" placeholder="Name" type="text">
+            <label for="exampleInputPassword1">Kind</label>
+            <input class="form-control" formControlName="kind" placeholder="Kind" type="text">
+            <label for="exampleInputEmail1">Picture</label>
+            <input class="form-control" formControlName="image" placeholder="Image" type="text">
+            <label for="exampleInputPassword1">Profile Text</label>
+            <input class="form-control" formControlName="profileText" placeholder="Profile Text" type="text">
+            <label for="exampleInputPassword1">Popularity</label>
+            <input class="form-control" formControlName="popularity" placeholder="Popularity" type="text">
+            <button class="btn btn-primary pull-right" type="submit">Create Pet</button>
+          </form>
+        </div>
+      </section>
+      </div>  
+
+        <section *ngIf="selectedPet" class="tiny-dialog fader" id="petProfile">
+          <img class="Picture" [src]="'http://localhost:8080/'+ selectedPet.image" >
+          <h3>{{selectedPet.name}}</h3>
+          <div class="dialog-centered">
+            <a class="btn btn-primary btn-lg dialog-centered" routerLink="/setup-date/{{selectedPet.name}}"
+               type="button">
+              Setup date
+            </a>
+          </div>
+        </section>
+
+
+
+     
+      
+    </div>
+  </div>
+
+  
