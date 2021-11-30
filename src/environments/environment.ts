@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:8080'
+  backendUrl: 'https://61a640b76bff9e268d532f79--loving-saha-2b4ca5.netlify.app/'
 };
 
 /*
